@@ -1,17 +1,18 @@
-/* Multi-Agent UI - Custom Branding CSS with Tailwind v3 and Flowbite */
+/* Multi-Agent UI - Custom Branding CSS with Chamfer Cuts & Center-Pull Design */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =============================================================================
-   CUSTOM BRANDING SYSTEM
-   Designed for eventual Flowbite replacement
+   CUSTOM BRANDING SYSTEM - NO ROUNDED CORNERS
+   Designed for eventual Flowbite replacement with chamfer cuts
    ============================================================================= */
 
 /* Global styles with new surface colors */
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   @apply bg-surface-bg text-text-primary;
+  overflow: hidden; /* Prevent scrollbars on dashboard layout */
 }
 
 /* Dark mode overrides */
@@ -20,83 +21,257 @@ body {
 }
 
 /* =============================================================================
-   COMPONENT LAYER - Gradual Flowbite Replacement System
+   CENTER-PULL CONTENT JUSTIFICATION SYSTEM
    ============================================================================= */
 
-/* Custom button system (will replace Flowbite buttons) */
+@layer base {
+  /* Center-pull directional classes */
+  .content-pull-bottom { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+  }
+  
+  .content-pull-top { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+  }
+  
+  .content-pull-left { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    text-align: left; 
+  }
+  
+  .content-pull-right { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end; 
+    text-align: right; 
+  }
+  
+  .content-pull-top-left { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    text-align: left; 
+  }
+  
+  .content-pull-top-right { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-end; 
+    text-align: right; 
+  }
+  
+  .content-pull-bottom-left { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    text-align: left; 
+  }
+  
+  .content-pull-bottom-right { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: flex-end; 
+    text-align: right; 
+  }
+  
+  .content-center { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+  }
+}
+
+/* =============================================================================
+   CHAMFER CUT SYSTEM - NO ROUNDED CORNERS
+   ============================================================================= */
+
+@layer base {
+  /* Chamfer size classes */
+  .chamfer-large {
+    clip-path: polygon(
+      16px 0%, 
+      100% 0%, 
+      100% calc(100% - 16px), 
+      calc(100% - 16px) 100%, 
+      0% 100%, 
+      0% 16px
+    );
+  }
+  
+  .chamfer-medium {
+    clip-path: polygon(
+      12px 0%, 
+      100% 0%, 
+      100% calc(100% - 12px), 
+      calc(100% - 12px) 100%, 
+      0% 100%, 
+      0% 12px
+    );
+  }
+  
+  .chamfer-small {
+    clip-path: polygon(
+      8px 0%, 
+      100% 0%, 
+      100% calc(100% - 8px), 
+      calc(100% - 8px) 100%, 
+      0% 100%, 
+      0% 8px
+    );
+  }
+  
+  .chamfer-tiny {
+    clip-path: polygon(
+      4px 0%, 
+      100% 0%, 
+      100% calc(100% - 4px), 
+      calc(100% - 4px) 100%, 
+      0% 100%, 
+      0% 4px
+    );
+  }
+  
+  .chamfer-micro {
+    clip-path: polygon(
+      2px 0%, 
+      100% 0%, 
+      100% calc(100% - 2px), 
+      calc(100% - 2px) 100%, 
+      0% 100%, 
+      0% 2px
+    );
+  }
+}
+
+/* =============================================================================
+   COMPONENT LAYER - Chamfered Flowbite Replacement System
+   ============================================================================= */
+
 @layer components {
+  /* Custom button system with chamfer cuts */
   .btn-brand {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-2 font-medium transition-all duration-200;
     @apply bg-brand-gradient text-edge-white;
     @apply hover:shadow-brand focus:ring-2 focus:ring-brand-core-500/50;
     @apply active:scale-95;
+    @apply chamfer-small; /* No rounded corners */
   }
   
   .btn-brand-cool {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-2 font-medium transition-all duration-200;
     @apply bg-brand-gradient-cool text-edge-white;
     @apply hover:shadow-brand focus:ring-2 focus:ring-brand-cool-500/50;
     @apply active:scale-95;
+    @apply chamfer-small;
   }
   
   .btn-brand-warm {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-2 font-medium transition-all duration-200;
     @apply bg-brand-gradient-warm text-edge-white;
     @apply hover:shadow-brand focus:ring-2 focus:ring-brand-warm-500/50;
     @apply active:scale-95;
+    @apply chamfer-small;
   }
   
   .btn-surface {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-4 py-2 font-medium transition-all duration-200;
     @apply bg-surface-interactive text-text-primary border border-surface-border;
     @apply hover:bg-surface-elevated hover:shadow-surface;
     @apply focus:ring-2 focus:ring-brand-core-500/30;
+    @apply chamfer-small;
   }
 
-  /* Card system (will replace Flowbite cards) */
+  /* Card system with chamfer cuts */
   .card-surface {
-    @apply bg-surface-elevated border border-surface-border rounded-lg;
+    @apply bg-surface-elevated border border-surface-border;
     @apply shadow-surface backdrop-blur-sm;
+    @apply chamfer-medium;
   }
   
   .card-surface-elevated {
-    @apply bg-surface-elevated border border-surface-border rounded-lg;
+    @apply bg-surface-elevated border border-surface-border;
     @apply shadow-surface-lg backdrop-blur-sm;
     @apply hover:shadow-brand/20 transition-shadow duration-300;
+    @apply chamfer-medium;
   }
   
   .card-brand {
-    @apply bg-surface-elevated border border-brand-core-500/30 rounded-lg;
+    @apply bg-surface-elevated border border-brand-core-500/30;
     @apply shadow-brand backdrop-blur-sm;
+    @apply chamfer-medium;
     background: linear-gradient(135deg, 
       hsla(0, 0%, 16%, 0.8) 0%, 
       hsla(300, 100%, 50%, 0.1) 100%);
   }
 
-  /* Badge system */
+  /* Badge system with chamfer cuts */
   .badge-brand {
-    @apply px-2 py-1 text-xs font-medium rounded-full;
+    @apply px-2 py-1 text-xs font-medium;
     @apply bg-brand-core-500/20 text-brand-core-300 border border-brand-core-500/30;
+    @apply chamfer-tiny;
   }
   
   .badge-cool {
-    @apply px-2 py-1 text-xs font-medium rounded-full;
+    @apply px-2 py-1 text-xs font-medium;
     @apply bg-brand-cool-500/20 text-brand-cool-300 border border-brand-cool-500/30;
+    @apply chamfer-tiny;
   }
   
   .badge-warm {
-    @apply px-2 py-1 text-xs font-medium rounded-full;
+    @apply px-2 py-1 text-xs font-medium;
     @apply bg-brand-warm-500/20 text-brand-warm-300 border border-brand-warm-500/30;
+    @apply chamfer-tiny;
   }
   
   .badge-surface {
-    @apply px-2 py-1 text-xs font-medium rounded-full;
+    @apply px-2 py-1 text-xs font-medium;
     @apply bg-surface-interactive text-text-secondary border border-surface-border;
+    @apply chamfer-tiny;
   }
 }
 
 /* =============================================================================
-   LAYOUT SYSTEM
+   DASHBOARD GRID LAYOUT SYSTEM
+   ============================================================================= */
+
+/* Dashboard grid system with chamfered panels */
+.dashboard-grid {
+  display: grid;
+  grid-template-areas: 
+    "top-left    top-bar     top-right"
+    "left-panel  main-content right-panel"
+    "bottom-left bottom-bar  bottom-right";
+  grid-template-columns: 240px 1fr 240px;
+  grid-template-rows: 60px 1fr 60px;
+  height: 100vh;
+  width: 100vw;
+  gap: 2px;
+  @apply bg-surface-bg;
+  padding: 2px;
+}
+
+/* Panel chamfer styling */
+.panel-chamfer {
+  @apply bg-surface-elevated border border-surface-border;
+  @apply chamfer-medium;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =============================================================================
+   LAYOUT SYSTEM & ANIMATIONS
    ============================================================================= */
 
 /* Custom animations for smooth interactions */
@@ -116,19 +291,6 @@ body {
   @apply shadow-glow;
 }
 
-/* Dashboard grid system */
-.dashboard-grid {
-  display: grid;
-  grid-template-areas: 
-    "top-left    top-bar     top-right"
-    "left-panel  main-content right-panel"
-    "bottom-left bottom-bar  bottom-right";
-  grid-template-columns: 240px 1fr 240px;
-  grid-template-rows: 60px 1fr 60px;
-  height: 100vh;
-  @apply bg-surface-bg;
-}
-
 /* Smooth transitions for tab switching */
 .tab-transition {
   transition: all 0.3s ease-in-out;
@@ -138,7 +300,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Custom scrollbar with brand theming */
+/* Custom scrollbar with brand theming and chamfer cuts */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
@@ -148,7 +310,8 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-surface-border rounded;
+  @apply bg-surface-border;
+  @apply chamfer-micro;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
@@ -178,29 +341,13 @@ body {
   animation: gradientShift 4s ease-in-out infinite;
 }
 
-/* Glassmorphism effect */
+/* Glassmorphism effect with chamfer cuts */
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   @apply border border-edge-white/10;
-}
-
-/* =============================================================================
-   DEVELOPMENT HELPERS
-   ============================================================================= */
-
-/* Visual debugging for layout development */
-.debug-grid {
-  background-image: 
-    linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* Flowbite Override Classes - Temporary during transition */
-.flowbite-override {
-  /* These will help maintain consistency while we replace Flowbite components */
+  @apply chamfer-medium;
 }
 
 /* =============================================================================
@@ -216,4 +363,36 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 60px;
   }
+  
+  /* Smaller chamfers on mobile */
+  .chamfer-large { @apply chamfer-medium; }
+  .chamfer-medium { @apply chamfer-small; }
+  .chamfer-small { @apply chamfer-tiny; }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller chamfers on very small screens */
+  .chamfer-medium { @apply chamfer-tiny; }
+  .chamfer-small { @apply chamfer-micro; }
+}
+
+/* =============================================================================
+   DEVELOPMENT HELPERS
+   ============================================================================= */
+
+/* Visual debugging for layout development */
+.debug-grid {
+  background-image: 
+    linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Remove all border-radius from Flowbite components during transition */
+:global(.flowbite-override) {
+  border-radius: 0 !important;
+}
+
+:global([class*="rounded"]) {
+  border-radius: 0 !important;
 }
