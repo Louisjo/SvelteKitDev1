@@ -2,62 +2,91 @@
 	// Import Flowbite Svelte components
 	import { Button, Card, Badge, DarkMode } from 'flowbite-svelte';
 	
-	// Basic stores for multi-agent UI (will be converted to Svelte stores later)
-	let currentTab = 'chat';
+	// Import our new Svelte stores
+	import { 
+		currentTab, 
+		theme, 
+		sidebarCollapsed, 
+		conversations,
+		agents,
+		switchTab,
+		toggleTheme,
+		toggleSidebar,
+		setLoading,
+		onlineAgents
+	} from '$lib';
 	
-	// Mock data for testing
-	let agents = [
-		{ 
-			id: 'agent_001', 
-			name: 'Concept Agent', 
-			status: 'idle', 
-			avatar: '🎨',
-			description: 'Generates creative concepts and ideas',
-			capabilities: ['research', 'ideation', 'brainstorming']
-		},
-		{ 
-			id: 'agent_002', 
-			name: 'Art Agent', 
-			status: 'busy', 
-			avatar: '🖼️',
-			description: 'Creates visual assets and artwork',
-			capabilities: ['image_generation', 'style_analysis', 'composition']
-		},
-		{ 
-			id: 'agent_003', 
-			name: 'Research Agent', 
-			status: 'idle', 
-			avatar: '📚',
-			description: 'Gathers and analyzes information',
-			capabilities: ['web_search', 'data_analysis', 'summarization']
-		}
-	];
+	import { onMount } from 'svelte';
 	
-	// Mock conversations
-	let conversations = [
-		{
-			id: 'conv_001',
-			title: 'Character Design Session',
-			lastMessage: 'Let\'s create a fantasy warrior concept...',
-			timestamp: '2 min ago',
-			participants: 2
-		},
-		{
-			id: 'conv_002', 
-			title: 'Game Economy Analysis',
-			lastMessage: 'The current balance seems favorable...',
-			timestamp: '15 min ago',
-			participants: 3
-		}
-	];
+	// Initialize mock data on component mount
+	onMount(() => {
+		// Set up mock agents
+		agents.set([
+			{ 
+				id: 'agent_001', 
+				name: 'Concept Agent', 
+				status: 'online', 
+				avatar: '🎨',
+				description: 'Generates creative concepts and ideas',
+				capabilities: ['research', 'ideation', 'brainstorming']
+			},
+			{ 
+				id: 'agent_002', 
+				name: 'Art Agent', 
+				status: 'busy', 
+				avatar: '🖼️',
+				description: 'Creates visual assets and artwork',
+				capabilities: ['image_generation', 'style_analysis', 'composition']
+			},
+			{ 
+				id: 'agent_003', 
+				name: 'Research Agent', 
+				status: 'online', 
+				avatar: '📚',
+				description: 'Gathers and analyzes information',
+				capabilities: ['web_search', 'data_analysis', 'summarization']
+			}
+		]);
+		
+		// Set up mock conversations
+		conversations.set([
+			{
+				id: 'conv_001',
+				title: 'Character Design Session',
+				lastMessage: 'Let\'s create a fantasy warrior concept...',
+				timestamp: '2 min ago',
+				participants: 2
+			},
+			{
+				id: 'conv_002', 
+				title: 'Game Economy Analysis',
+				lastMessage: 'The current balance seems favorable...',
+				timestamp: '15 min ago',
+				participants: 3
+			}
+		]);
+		
+		console.log('[PAGE] Mock data initialized with Svelte stores');
+	});
 	
 	function getStatusColor(status) {
 		switch(status) {
-			case 'idle': return 'green';
+			case 'online': return 'green';
 			case 'busy': return 'yellow'; 
 			case 'offline': return 'gray';
 			default: return 'blue';
 		}
+	}
+	
+	// Test function to demonstrate store functionality
+	function handleTabSwitch(newTab) {
+		setLoading(newTab, true);
+		switchTab(newTab);
+		
+		// Simulate loading time
+		setTimeout(() => {
+			setLoading(newTab, false);
+		}, 500);
 	}
 </script>
 
@@ -68,9 +97,18 @@
 			<div>
 				<h1 class="text-3xl font-bold text-gray-50">Multi-Agent UI Dashboard</h1>
 				<p class="text-gray-300 mt-1">SvelteKit + Flowbite + Tailwind CSS Foundation</p>
+				<p class="text-xs text-gray-400 mt-1">
+					✅ Svelte Stores Active | Theme: {$theme} | Sidebar: {$sidebarCollapsed ? 'Collapsed' : 'Expanded'}
+				</p>
 			</div>
 			<div class="flex items-center space-x-4">
 				<Badge color="green" size="sm">v0.1 Alpha</Badge>
+				<Button size="xs" color="alternative" on:click={toggleSidebar}>
+					{$sidebarCollapsed ? 'Expand' : 'Collapse'} Sidebar
+				</Button>
+				<Button size="xs" color="alternative" on:click={toggleTheme}>
+					Toggle to {$theme === 'dark' ? 'Light' : 'Dark'}
+				</Button>
 				<DarkMode class="text-gray-400" />
 			</div>
 		</div>
@@ -81,25 +119,25 @@
 		<div class="px-6 py-4">
 			<div class="flex space-x-2">
 				<Button 
-					color={currentTab === 'chat' ? 'blue' : 'alternative'}
+					color={$currentTab === 'chat' ? 'blue' : 'alternative'}
 					size="sm"
-					on:click={() => currentTab = 'chat'}
+					on:click={() => handleTabSwitch('chat')}
 					class="tab-transition"
 				>
 					💬 Chat
 				</Button>
 				<Button 
-					color={currentTab === 'workflow' ? 'blue' : 'alternative'}
+					color={$currentTab === 'workflow' ? 'blue' : 'alternative'}
 					size="sm"
-					on:click={() => currentTab = 'workflow'}
+					on:click={() => handleTabSwitch('workflow')}
 					class="tab-transition"
 				>
 					🔄 Workflow
 				</Button>
 				<Button 
-					color={currentTab === 'agents' ? 'blue' : 'alternative'}
+					color={$currentTab === 'agents' ? 'blue' : 'alternative'}
 					size="sm"
-					on:click={() => currentTab = 'agents'}
+					on:click={() => handleTabSwitch('agents')}
 					class="tab-transition"
 				>
 					🤖 Agents
@@ -108,14 +146,23 @@
 		</div>
 	</nav>
 	
+	<!-- Debug info panel (development only) -->
+	<div class="bg-gray-800 border-b border-gray-700 px-6 py-2">
+		<div class="text-xs text-gray-400 flex space-x-4">
+			<span>Current Tab: <strong class="text-accent-400">{$currentTab}</strong></span>
+			<span>Online Agents: <strong class="text-success-500">{$onlineAgents.length}</strong></span>
+			<span>Total Conversations: <strong class="text-accent-400">{$conversations.length}</strong></span>
+		</div>
+	</div>
+	
 	<!-- Main content area -->
 	<main class="p-6">
 		<div class="max-w-7xl mx-auto">
-			{#if currentTab === 'chat'}
-				<div class="space-y-6">
+			{#if $currentTab === 'chat'}
+				<div class="space-y-6 fade-in">
 					<h2 class="text-2xl font-semibold text-gray-50">Chat Interface</h2>
 					<div class="grid gap-4 md:grid-cols-2">
-						{#each conversations as conversation}
+						{#each $conversations as conversation}
 							<Card class="bg-gray-800 border-gray-600">
 								<div class="flex items-start justify-between">
 									<div class="flex-1">
@@ -133,8 +180,8 @@
 					</div>
 					<Button color="blue">Start New Conversation</Button>
 				</div>
-			{:else if currentTab === 'workflow'}
-				<div class="space-y-6">
+			{:else if $currentTab === 'workflow'}
+				<div class="space-y-6 fade-in">
 					<h2 class="text-2xl font-semibold text-gray-50">Workflow Builder</h2>
 					<Card class="bg-gray-800 border-gray-600 p-8">
 						<div class="text-center">
@@ -145,14 +192,17 @@
 						</div>
 					</Card>
 				</div>
-			{:else if currentTab === 'agents'}
-				<div class="space-y-6">
+			{:else if $currentTab === 'agents'}
+				<div class="space-y-6 fade-in">
 					<div class="flex items-center justify-between">
 						<h2 class="text-2xl font-semibold text-gray-50">Agent Management</h2>
-						<Button color="blue" size="sm">Add Agent</Button>
+						<div class="flex items-center space-x-2">
+							<Badge color="green" size="sm">{$onlineAgents.length} online</Badge>
+							<Button color="blue" size="sm">Add Agent</Button>
+						</div>
 					</div>
 					<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-						{#each agents as agent}
+						{#each $agents as agent}
 							<Card class="bg-gray-800 border-gray-600">
 								<div class="flex items-start space-x-3">
 									<div class="text-3xl">{agent.avatar}</div>
