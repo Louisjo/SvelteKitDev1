@@ -1,5 +1,5 @@
 <script>
-	// Import Flowbite Svelte components
+	// Import Flowbite Svelte components (temporary during transition)
 	import { Button, Card, Badge, DarkMode } from 'flowbite-svelte';
 	
 	// Import our new Svelte stores
@@ -17,10 +17,14 @@
 	} from '$lib';
 	
 	import { onMount } from 'svelte';
+	import BrandingGuide from '$lib/components/BrandingGuide.svelte';
+	
+	// Branding guide state
+	let showBrandingGuide = false;
 	
 	// Initialize mock data on component mount
 	onMount(() => {
-		// Set up mock agents
+		// Set up mock agents with status colors matching our branding
 		agents.set([
 			{ 
 				id: 'agent_001', 
@@ -28,7 +32,8 @@
 				status: 'online', 
 				avatar: '🎨',
 				description: 'Generates creative concepts and ideas',
-				capabilities: ['research', 'ideation', 'brainstorming']
+				capabilities: ['research', 'ideation', 'brainstorming'],
+				brandColor: 'core'
 			},
 			{ 
 				id: 'agent_002', 
@@ -36,7 +41,8 @@
 				status: 'busy', 
 				avatar: '🖼️',
 				description: 'Creates visual assets and artwork',
-				capabilities: ['image_generation', 'style_analysis', 'composition']
+				capabilities: ['image_generation', 'style_analysis', 'composition'],
+				brandColor: 'warm'
 			},
 			{ 
 				id: 'agent_003', 
@@ -44,7 +50,8 @@
 				status: 'online', 
 				avatar: '📚',
 				description: 'Gathers and analyzes information',
-				capabilities: ['web_search', 'data_analysis', 'summarization']
+				capabilities: ['web_search', 'data_analysis', 'summarization'],
+				brandColor: 'cool'
 			}
 		]);
 		
@@ -55,27 +62,36 @@
 				title: 'Character Design Session',
 				lastMessage: 'Let\'s create a fantasy warrior concept...',
 				timestamp: '2 min ago',
-				participants: 2
+				participants: 2,
+				priority: 'high'
 			},
 			{
 				id: 'conv_002', 
 				title: 'Game Economy Analysis',
 				lastMessage: 'The current balance seems favorable...',
 				timestamp: '15 min ago',
-				participants: 3
+				participants: 3,
+				priority: 'normal'
 			}
 		]);
 		
-		console.log('[PAGE] Mock data initialized with Svelte stores');
+		console.log('[PAGE] Mock data initialized with new branding system');
 	});
 	
-	function getStatusColor(status) {
+	function getStatusBadgeClass(status) {
 		switch(status) {
-			case 'online': return 'green';
-			case 'busy': return 'yellow'; 
-			case 'offline': return 'gray';
-			default: return 'blue';
+			case 'online': return 'badge-brand';
+			case 'busy': return 'badge-warm'; 
+			case 'offline': return 'badge-surface';
+			default: return 'badge-cool';
 		}
+	}
+	
+	function getAgentCardClass(agent) {
+		if (agent.status === 'online') {
+			return 'card-brand glow-hover';
+		}
+		return 'card-surface-elevated';
 	}
 	
 	// Test function to demonstrate store functionality
@@ -88,142 +104,162 @@
 			setLoading(newTab, false);
 		}, 500);
 	}
+	
+	// Custom button click handlers for demonstration
+	function handleStartConversation() {
+		console.log('Starting new conversation with custom branding');
+		// This would open a new conversation modal
+	}
+	
+	function handleCreateWorkflow() {
+		console.log('Creating new workflow with brand system');
+		// This would open the workflow builder
+	}
 </script>
 
-<div class="min-h-screen bg-gray-900 text-gray-100">
-	<!-- Header with title and theme toggle -->
-	<header class="border-b border-gray-700 bg-gray-800">
+<!-- Updated to use surface background -->
+<div class="min-h-screen bg-surface-bg text-text-primary">
+	<!-- Header with new branding -->
+	<header class="border-b border-surface-border bg-surface-elevated">
 		<div class="flex items-center justify-between p-6">
 			<div>
-				<h1 class="text-3xl font-bold text-gray-50">Multi-Agent UI Dashboard</h1>
-				<p class="text-gray-300 mt-1">SvelteKit + Flowbite + Tailwind CSS Foundation</p>
-				<p class="text-xs text-gray-400 mt-1">
-					✅ Svelte Stores Active | Theme: {$theme} | Sidebar: {$sidebarCollapsed ? 'Collapsed' : 'Expanded'}
+				<h1 class="text-3xl font-bold text-brand-gradient">Multi-Agent UI Dashboard</h1>
+				<p class="text-text-secondary mt-1">SvelteKit + Custom Branding System + Flowbite (Transitional)</p>
+				<p class="text-xs text-text-muted mt-1">
+					✨ Custom Branding Active | Theme: <span class="text-brand-core-400">{$theme}</span> | 
+					Sidebar: <span class="text-brand-cool-400">{$sidebarCollapsed ? 'Collapsed' : 'Expanded'}</span>
 				</p>
 			</div>
 			<div class="flex items-center space-x-4">
-				<Badge color="green" size="sm">v0.1 Alpha</Badge>
-				<Button size="xs" color="alternative" on:click={toggleSidebar}>
-					{$sidebarCollapsed ? 'Expand' : 'Collapse'} Sidebar
-				</Button>
-				<Button size="xs" color="alternative" on:click={toggleTheme}>
-					Toggle to {$theme === 'dark' ? 'Light' : 'Dark'}
-				</Button>
-				<DarkMode class="text-gray-400" />
+				<div class="badge-brand">v0.1 Alpha</div>
+				
+				<!-- Custom branded buttons replacing Flowbite gradually -->
+				<button class="btn-surface" on:click={toggleSidebar}>
+					{$sidebarCollapsed ? '📖 Expand' : '📕 Collapse'} Sidebar
+				</button>
+				<button class="btn-brand-cool" on:click={toggleTheme}>
+					🎨 Toggle to {$theme === 'dark' ? 'Light' : 'Dark'}
+				</button>
+				<button class="btn-brand" on:click={() => showBrandingGuide = true}>
+					📚 Branding Guide
+				</button>
+				
+				<!-- Keep some Flowbite during transition -->
+				<DarkMode class="text-text-muted" />
 			</div>
 		</div>
 	</header>
 	
-	<!-- Tab navigation with Flowbite buttons -->
-	<nav class="border-b border-gray-700 bg-gray-800">
+	<!-- Tab navigation with custom branding -->
+	<nav class="border-b border-surface-border bg-surface-elevated">
 		<div class="px-6 py-4">
 			<div class="flex space-x-2">
-				<Button 
-					color={$currentTab === 'chat' ? 'blue' : 'alternative'}
-					size="sm"
+				<!-- Transition: Mix of custom and Flowbite components -->
+				<button 
+					class="{$currentTab === 'chat' ? 'btn-brand' : 'btn-surface'} tab-transition"
 					on:click={() => handleTabSwitch('chat')}
-					class="tab-transition"
 				>
 					💬 Chat
-				</Button>
-				<Button 
-					color={$currentTab === 'workflow' ? 'blue' : 'alternative'}
-					size="sm"
+				</button>
+				<button 
+					class="{$currentTab === 'workflow' ? 'btn-brand-cool' : 'btn-surface'} tab-transition"
 					on:click={() => handleTabSwitch('workflow')}
-					class="tab-transition"
 				>
 					🔄 Workflow
-				</Button>
-				<Button 
-					color={$currentTab === 'agents' ? 'blue' : 'alternative'}
-					size="sm"
+				</button>
+				<button 
+					class="{$currentTab === 'agents' ? 'btn-brand-warm' : 'btn-surface'} tab-transition"
 					on:click={() => handleTabSwitch('agents')}
-					class="tab-transition"
 				>
 					🤖 Agents
-				</Button>
+				</button>
 			</div>
 		</div>
 	</nav>
 	
-	<!-- Debug info panel (development only) -->
-	<div class="bg-gray-800 border-b border-gray-700 px-6 py-2">
-		<div class="text-xs text-gray-400 flex space-x-4">
-			<span>Current Tab: <strong class="text-accent-400">{$currentTab}</strong></span>
-			<span>Online Agents: <strong class="text-success-500">{$onlineAgents.length}</strong></span>
-			<span>Total Conversations: <strong class="text-accent-400">{$conversations.length}</strong></span>
+	<!-- Debug info panel with branding -->
+	<div class="bg-surface-elevated border-b border-surface-border px-6 py-2">
+		<div class="text-xs text-text-muted flex space-x-4">
+			<span>Current Tab: <strong class="text-brand-core-400">{$currentTab}</strong></span>
+			<span>Online Agents: <strong class="text-brand-cool-400">{$onlineAgents.length}</strong></span>
+			<span>Total Conversations: <strong class="text-brand-warm-400">{$conversations.length}</strong></span>
+			<span class="text-brand-core-300">🎨 Custom Branding System Active</span>
 		</div>
 	</div>
 	
-	<!-- Main content area -->
+	<!-- Main content area with new styling -->
 	<main class="p-6">
 		<div class="max-w-7xl mx-auto">
 			{#if $currentTab === 'chat'}
 				<div class="space-y-6 fade-in">
-					<h2 class="text-2xl font-semibold text-gray-50">Chat Interface</h2>
+					<h2 class="text-2xl font-semibold text-text-primary">Chat Interface</h2>
 					<div class="grid gap-4 md:grid-cols-2">
 						{#each $conversations as conversation}
-							<Card class="bg-gray-800 border-gray-600">
+							<!-- Custom card instead of Flowbite Card -->
+							<div class="card-surface p-6">
 								<div class="flex items-start justify-between">
 									<div class="flex-1">
-										<h3 class="font-semibold text-gray-50 mb-1">{conversation.title}</h3>
-										<p class="text-sm text-gray-300 mb-2">{conversation.lastMessage}</p>
+										<h3 class="font-semibold text-text-primary mb-1">{conversation.title}</h3>
+										<p class="text-sm text-text-secondary mb-2">{conversation.lastMessage}</p>
 										<div class="flex items-center space-x-2">
-											<Badge color="blue" size="xs">{conversation.participants} participants</Badge>
-											<span class="text-xs text-gray-400">{conversation.timestamp}</span>
+											<span class="badge-cool">{conversation.participants} participants</span>
+											<span class="text-xs text-text-muted">{conversation.timestamp}</span>
+											{#if conversation.priority === 'high'}
+												<span class="badge-warm">High Priority</span>
+											{/if}
 										</div>
 									</div>
-									<Button size="xs" color="alternative">Join</Button>
+									<button class="btn-surface">Join</button>
 								</div>
-							</Card>
+							</div>
 						{/each}
 					</div>
-					<Button color="blue">Start New Conversation</Button>
+					<button class="btn-brand" on:click={handleStartConversation}>✨ Start New Conversation</button>
 				</div>
 			{:else if $currentTab === 'workflow'}
 				<div class="space-y-6 fade-in">
-					<h2 class="text-2xl font-semibold text-gray-50">Workflow Builder</h2>
-					<Card class="bg-gray-800 border-gray-600 p-8">
+					<h2 class="text-2xl font-semibold text-text-primary">Workflow Builder</h2>
+					<div class="card-brand p-8">
 						<div class="text-center">
 							<div class="text-6xl mb-4">🔄</div>
-							<h3 class="text-xl font-semibold text-gray-50 mb-2">Visual Workflow Canvas</h3>
-							<p class="text-gray-300 mb-4">Drag and drop agents to create automated workflows</p>
-							<Button color="blue">Create Workflow</Button>
+							<h3 class="text-xl font-semibold text-text-primary mb-2">Visual Workflow Canvas</h3>
+							<p class="text-text-secondary mb-4">Drag and drop agents to create automated workflows</p>
+							<button class="btn-brand-cool" on:click={handleCreateWorkflow}>🚀 Create Workflow</button>
 						</div>
-					</Card>
+					</div>
 				</div>
 			{:else if $currentTab === 'agents'}
 				<div class="space-y-6 fade-in">
 					<div class="flex items-center justify-between">
-						<h2 class="text-2xl font-semibold text-gray-50">Agent Management</h2>
+						<h2 class="text-2xl font-semibold text-text-primary">Agent Management</h2>
 						<div class="flex items-center space-x-2">
-							<Badge color="green" size="sm">{$onlineAgents.length} online</Badge>
-							<Button color="blue" size="sm">Add Agent</Button>
+							<span class="badge-brand">{$onlineAgents.length} online</span>
+							<button class="btn-brand">➕ Add Agent</button>
 						</div>
 					</div>
 					<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 						{#each $agents as agent}
-							<Card class="bg-gray-800 border-gray-600">
+							<div class="{getAgentCardClass(agent)} p-4">
 								<div class="flex items-start space-x-3">
 									<div class="text-3xl">{agent.avatar}</div>
 									<div class="flex-1 min-w-0">
 										<div class="flex items-center justify-between mb-1">
-											<h3 class="font-semibold text-gray-50 truncate">{agent.name}</h3>
-											<Badge color={getStatusColor(agent.status)} size="xs">{agent.status}</Badge>
+											<h3 class="font-semibold text-text-primary truncate">{agent.name}</h3>
+											<span class="{getStatusBadgeClass(agent.status)}">{agent.status}</span>
 										</div>
-										<p class="text-sm text-gray-300 mb-3">{agent.description}</p>
+										<p class="text-sm text-text-secondary mb-3">{agent.description}</p>
 										<div class="flex flex-wrap gap-1">
 											{#each agent.capabilities as capability}
-												<Badge color="alternative" size="xs">{capability}</Badge>
+												<span class="badge-surface">{capability}</span>
 											{/each}
 										</div>
 									</div>
 								</div>
 								<div class="mt-4 flex space-x-2">
-									<Button size="xs" color="alternative" class="flex-1">Configure</Button>
-									<Button size="xs" color="blue" class="flex-1">Interact</Button>
+									<button class="btn-surface flex-1">⚙️ Configure</button>
+									<button class="btn-brand-{agent.brandColor} flex-1">💬 Interact</button>
 								</div>
-							</Card>
+							</div>
 						{/each}
 					</div>
 				</div>
@@ -232,13 +268,17 @@
 	</main>
 </div>
 
+<!-- Branding Guide Modal -->
+<BrandingGuide bind:showGuide={showBrandingGuide} />
+
 <style>
-	/* Custom styles for our components */
-	:global(.tab-transition) {
-		transition: all 0.2s ease-in-out;
-	}
-	
+	/* Additional component-specific styles */
 	:global(.tab-transition:hover) {
 		transform: translateY(-1px);
+	}
+	
+	/* Flowbite transition helper */
+	:global(.flowbite-transition) {
+		/* Gradual transition styles will go here */
 	}
 </style>
