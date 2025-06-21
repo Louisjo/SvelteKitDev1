@@ -1,8 +1,9 @@
 <script>
-	// Main Content Panel - Enhanced content with smooth tab transitions
+	// Main Content Panel - Enhanced content with smooth tab transitions and ChatInterface
 	import { currentTab, conversations, agents, workflows } from '$lib/stores';
 	import { fly, fade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+	import ChatInterface from '../chat/ChatInterface.svelte';
 </script>
 
 <div class="floating-content">
@@ -10,15 +11,8 @@
 		<div class="content-section" 
 			 in:fly="{{ x: -50, duration: 400, easing: cubicOut }}"
 			 out:fade="{{ duration: 200 }}">
-			<h2 class="content-title">Chat Interface</h2>
-			<div class="content-area">
-				<div class="chat-placeholder">
-					<div class="placeholder-icon">💬</div>
-					<p class="placeholder-text">Chat interface will be implemented here</p>
-					<div class="placeholder-stats">
-						<span class="stat-item">{$conversations.length} conversations</span>
-					</div>
-				</div>
+			<div class="chat-container">
+				<ChatInterface />
 			</div>
 		</div>
 	{:else if $currentTab === 'workflow'}
@@ -110,7 +104,12 @@
 		animation: slideInContent 0.6s ease-out 0.4s forwards;
 	}
 	
-	.chat-placeholder,
+	.chat-container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
 	.workflow-placeholder,
 	.agents-placeholder {
 		display: flex;
