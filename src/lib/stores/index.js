@@ -4,6 +4,7 @@
  */
 
 import { writable, derived, readable } from 'svelte/store';
+import { mockAgents, mockConversations, mockWorkflows } from '../mockData.js';
 
 // =============================================================================
 // CORE UI STORES
@@ -46,7 +47,7 @@ export const loadingStates = writable({
  * All conversations in the system
  * @type {import('svelte/store').Writable<Array>}
  */
-export const conversations = writable([]);
+export const conversations = writable(mockConversations);
 
 /**
  * Currently active conversation ID
@@ -68,7 +69,7 @@ export const chatInput = writable('');
  * All available agents
  * @type {import('svelte/store').Writable<Array>}
  */
-export const agents = writable([]);
+export const agents = writable(mockAgents);
 
 /**
  * Currently selected/active agents
@@ -84,7 +85,7 @@ export const selectedAgents = writable([]);
  * All workflows in the system
  * @type {import('svelte/store').Writable<Array>}
  */
-export const workflows = writable([]);
+export const workflows = writable(mockWorkflows);
 
 /**
  * Currently active workflow
