@@ -144,6 +144,7 @@ SvelteKitDev1/
 **Issues Encountered:**
 - ✅ FIXED: Layout breaking on window resize (panels overlapping)
 - ✅ FIXED: Only 2 corners chamfered instead of all 4 corners
+- ✅ FIXED: CSS build error with invalid `hover:shadow-brand/20` class
 - All systems now working perfectly across all screen sizes
 
 **Next Session Priority:**
