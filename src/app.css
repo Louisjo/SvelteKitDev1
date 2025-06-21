@@ -8,255 +8,416 @@
    Designed for eventual Flowbite replacement with true octagonal shapes
    ============================================================================= */
 
-/* Global styles with new surface colors */
+/* Global styles with new surface colors and hexagonal font */
 body {
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  @apply bg-surface-bg text-text-primary;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+  background-color: hsl(0, 0%, 12.5%);
+  color: hsl(0, 0%, 95%);
   overflow: hidden; /* Prevent scrollbars on dashboard layout */
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 /* Dark mode overrides */
 .dark {
-  @apply bg-surface-bg text-text-primary;
+  background-color: hsl(0, 0%, 12.5%);
+  color: hsl(0, 0%, 95%);
 }
 
 /* =============================================================================
    CENTER-PULL CONTENT JUSTIFICATION SYSTEM
    ============================================================================= */
 
-@layer base {
-  /* Center-pull directional classes */
-  .content-pull-bottom { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-  }
-  
-  .content-pull-top { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-  }
-  
-  .content-pull-left { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-right { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-pull-top-left { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-top-right { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-pull-bottom-left { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-bottom-right { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-center { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-  }
+/* Center-pull directional classes */
+.content-pull-bottom { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+}
+
+.content-pull-top { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+}
+
+.content-pull-left { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-right { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-pull-top-left { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-top-right { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-pull-bottom-left { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-bottom-right { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-center { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
 }
 
 /* =============================================================================
    4-CORNER CHAMFER CUT SYSTEM - TRUE OCTAGONAL SHAPES
    ============================================================================= */
 
-@layer base {
-  /* 4-corner chamfer size classes - true octagons */
-  .chamfer-large {
-    clip-path: polygon(
-      16px 0%, 
-      calc(100% - 16px) 0%, 
-      100% 16px, 
-      100% calc(100% - 16px), 
-      calc(100% - 16px) 100%, 
-      16px 100%, 
-      0% calc(100% - 16px), 
-      0% 16px
-    );
-  }
-  
-  .chamfer-medium {
-    clip-path: polygon(
-      12px 0%, 
-      calc(100% - 12px) 0%, 
-      100% 12px, 
-      100% calc(100% - 12px), 
-      calc(100% - 12px) 100%, 
-      12px 100%, 
-      0% calc(100% - 12px), 
-      0% 12px
-    );
-  }
-  
-  .chamfer-small {
-    clip-path: polygon(
-      8px 0%, 
-      calc(100% - 8px) 0%, 
-      100% 8px, 
-      100% calc(100% - 8px), 
-      calc(100% - 8px) 100%, 
-      8px 100%, 
-      0% calc(100% - 8px), 
-      0% 8px
-    );
-  }
-  
-  .chamfer-tiny {
-    clip-path: polygon(
-      4px 0%, 
-      calc(100% - 4px) 0%, 
-      100% 4px, 
-      100% calc(100% - 4px), 
-      calc(100% - 4px) 100%, 
-      4px 100%, 
-      0% calc(100% - 4px), 
-      0% 4px
-    );
-  }
-  
-  .chamfer-micro {
-    clip-path: polygon(
-      2px 0%, 
-      calc(100% - 2px) 0%, 
-      100% 2px, 
-      100% calc(100% - 2px), 
-      calc(100% - 2px) 100%, 
-      2px 100%, 
-      0% calc(100% - 2px), 
-      0% 2px
-    );
-  }
+/* 4-corner chamfer size classes - true octagons */
+.chamfer-large {
+  clip-path: polygon(
+    16px 0%, 
+    calc(100% - 16px) 0%, 
+    100% 16px, 
+    100% calc(100% - 16px), 
+    calc(100% - 16px) 100%, 
+    16px 100%, 
+    0% calc(100% - 16px), 
+    0% 16px
+  );
+}
+
+.chamfer-medium {
+  clip-path: polygon(
+    12px 0%, 
+    calc(100% - 12px) 0%, 
+    100% 12px, 
+    100% calc(100% - 12px), 
+    calc(100% - 12px) 100%, 
+    12px 100%, 
+    0% calc(100% - 12px), 
+    0% 12px
+  );
+}
+
+.chamfer-small {
+  clip-path: polygon(
+    8px 0%, 
+    calc(100% - 8px) 0%, 
+    100% 8px, 
+    100% calc(100% - 8px), 
+    calc(100% - 8px) 100%, 
+    8px 100%, 
+    0% calc(100% - 8px), 
+    0% 8px
+  );
+}
+
+.chamfer-tiny {
+  clip-path: polygon(
+    4px 0%, 
+    calc(100% - 4px) 0%, 
+    100% 4px, 
+    100% calc(100% - 4px), 
+    calc(100% - 4px) 100%, 
+    4px 100%, 
+    0% calc(100% - 4px), 
+    0% 4px
+  );
+}
+
+.chamfer-micro {
+  clip-path: polygon(
+    2px 0%, 
+    calc(100% - 2px) 0%, 
+    100% 2px, 
+    100% calc(100% - 2px), 
+    calc(100% - 2px) 100%, 
+    2px 100%, 
+    0% calc(100% - 2px), 
+    0% 2px
+  );
 }
 
 /* =============================================================================
-   COMPONENT LAYER - Chamfered Flowbite Replacement System
+   ICON COMPONENT SYSTEM - Square icons with chamfer corners and text
    ============================================================================= */
 
-@layer components {
-  /* Custom button system with 4-corner chamfer cuts */
-  .btn-brand {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-core-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small; /* True octagon */
-  }
-  
-  .btn-brand-cool {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient-cool text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-cool-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small;
-  }
-  
-  .btn-brand-warm {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient-warm text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-warm-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small;
-  }
-  
-  .btn-surface {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-surface-interactive text-text-primary border border-surface-border;
-    @apply hover:bg-surface-elevated hover:shadow-surface;
-    @apply focus:ring-2 focus:ring-brand-core-500/30;
-    @apply chamfer-small;
-  }
+/* Base icon container */
+.icon-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: var(--icon-padding);
+}
 
-  /* Card system with 4-corner chamfer cuts */
-  .card-surface {
-    @apply bg-surface-elevated border border-surface-border;
-    @apply shadow-surface backdrop-blur-sm;
-    @apply chamfer-medium;
-  }
-  
-  .card-surface-elevated {
-    @apply bg-surface-elevated border border-surface-border;
-    @apply shadow-surface-lg backdrop-blur-sm;
-    @apply hover:shadow-brand-hover transition-shadow duration-300;
-    @apply chamfer-medium;
-  }
-  
-  .card-brand {
-    @apply bg-surface-elevated border border-brand-core-500/30;
-    @apply shadow-brand backdrop-blur-sm;
-    @apply chamfer-medium;
-    background: linear-gradient(135deg, 
-      hsla(0, 0%, 16%, 0.8) 0%, 
-      hsla(300, 100%, 50%, 0.1) 100%);
-  }
+/* Square icon with chamfer corners - flush with panel borders */
+.icon-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-color: #ffffff40; /* White with 25% alpha */
+  border: 2px solid #ffffff;   /* White border */
+  color: hsl(0, 0%, 15%);      /* Dark text for contrast on light background */
+  font-size: calc(var(--icon-size) * 0.4);
+  margin-bottom: 2px;
+  clip-path: polygon(
+    8px 0%, 
+    calc(100% - 8px) 0%, 
+    100% 8px, 
+    100% calc(100% - 8px), 
+    calc(100% - 8px) 100%, 
+    8px 100%, 
+    0% calc(100% - 8px), 
+    0% 8px
+  );
+  transition: all 0.2s ease;
+}
 
-  /* Badge system with 4-corner chamfer cuts */
-  .badge-brand {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-core-500/20 text-brand-core-300 border border-brand-core-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-cool {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-cool-500/20 text-brand-cool-300 border border-brand-cool-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-warm {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-warm-500/20 text-brand-warm-300 border border-brand-warm-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-surface {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-surface-interactive text-text-secondary border border-surface-border;
-    @apply chamfer-tiny;
-  }
+.icon-square:hover {
+  background-color: #ffffff60; /* Slightly more opaque on hover */
+  border-color: hsl(300, 100%, 50%);
+  transform: scale(1.02);
+}
+
+/* Icon text underneath */
+.icon-text {
+  font-size: calc(var(--icon-size) * 0.15);
+  color: hsl(0, 0%, 95%);
+  text-align: center;
+  line-height: 1.1;
+  max-width: var(--icon-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* Icon sizes - now using CSS custom properties */
+.icon-large {
+  --icon-size: calc(6.25vh - 4px);
+}
+
+.icon-large .icon-text {
+  font-size: calc(var(--icon-size) * 0.18);
+}
+
+.icon-small {
+  --icon-size: calc(6.25vh - 12px);
+}
+
+.icon-small .icon-text {
+  font-size: calc(var(--icon-size) * 0.12);
+}
+
+/* Panel icon layouts - fill entire panel space */
+.panel-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 2px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Single icon fills entire panel */
+.panel-icons.single {
+  flex-wrap: nowrap;
+}
+
+.panel-icons.single .icon-component {
+  flex: 1;
+}
+
+/* Multiple icons in grid - fill available space */
+.panel-icons.grid {
+  display: grid;
+  gap: 2px;
+  padding: 2px;
+}
+
+.panel-icons.grid .icon-component {
+  min-height: 0;
+}
+
+/* =============================================================================
+   COMPONENT SYSTEM - Custom Buttons, Cards, Badges
+   ============================================================================= */
+
+/* Custom button system with 4-corner chamfer cuts */
+.btn-brand {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(135deg, hsl(300, 100%, 50%) 0%, hsl(270, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: 0 4px 14px 0 hsla(300, 100%, 50%, 0.25);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+}
+
+.btn-brand:hover {
+  box-shadow: 0 10px 25px -3px hsla(300, 100%, 50%, 0.3), 0 4px 6px -2px hsla(300, 100%, 50%, 0.1);
+}
+
+.btn-brand:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsla(300, 100%, 50%, 0.5);
+}
+
+.btn-brand:active {
+  transform: scale(0.95);
+}
+
+.btn-brand-cool {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(135deg, hsl(270, 100%, 50%) 0%, hsl(300, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: 0 4px 14px 0 hsla(270, 100%, 50%, 0.25);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+}
+
+.btn-brand-cool:hover {
+  box-shadow: 0 10px 25px -3px hsla(270, 100%, 50%, 0.3), 0 4px 6px -2px hsla(270, 100%, 50%, 0.1);
+}
+
+.btn-brand-warm {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(135deg, hsl(300, 100%, 50%) 0%, hsl(330, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: 0 4px 14px 0 hsla(330, 100%, 50%, 0.25);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+}
+
+.btn-surface {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 95%);
+  border: 1px solid hsl(0, 0%, 25%);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+}
+
+.btn-surface:hover {
+  background-color: hsl(0, 0%, 16%);
+  box-shadow: 0 4px 14px 0 hsla(0, 0%, 0%, 0.3);
+}
+
+/* Card system with 4-corner chamfer cuts */
+.card-surface {
+  background-color: hsl(0, 0%, 16%);
+  border: 1px solid hsl(0, 0%, 25%);
+  box-shadow: 0 4px 14px 0 hsla(0, 0%, 0%, 0.3);
+  backdrop-filter: blur(4px);
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+}
+
+.card-surface-elevated {
+  background-color: hsl(0, 0%, 16%);
+  border: 1px solid hsl(0, 0%, 25%);
+  box-shadow: 0 10px 25px -3px hsla(0, 0%, 0%, 0.4), 0 4px 6px -2px hsla(0, 0%, 0%, 0.2);
+  backdrop-filter: blur(4px);
+  transition: box-shadow 0.3s ease;
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+}
+
+.card-surface-elevated:hover {
+  box-shadow: 0 10px 25px -3px hsla(300, 100%, 50%, 0.2), 0 4px 6px -2px hsla(300, 100%, 50%, 0.1);
+}
+
+.card-brand {
+  background: linear-gradient(135deg, hsla(0, 0%, 16%, 0.8) 0%, hsla(300, 100%, 50%, 0.1) 100%);
+  border: 1px solid hsla(300, 100%, 50%, 0.3);
+  box-shadow: 0 4px 14px 0 hsla(300, 100%, 50%, 0.25);
+  backdrop-filter: blur(4px);
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+}
+
+/* Badge system with 4-corner chamfer cuts */
+.badge-brand {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: hsla(300, 100%, 50%, 0.2);
+  color: hsl(300, 100%, 70%);
+  border: 1px solid hsla(300, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, calc(100% - 4px) 0%, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0% calc(100% - 4px), 0% 4px);
+}
+
+.badge-cool {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: hsla(270, 100%, 50%, 0.2);
+  color: hsl(270, 100%, 70%);
+  border: 1px solid hsla(270, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, calc(100% - 4px) 0%, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0% calc(100% - 4px), 0% 4px);
+}
+
+.badge-warm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: hsla(330, 100%, 50%, 0.2);
+  color: hsl(330, 100%, 70%);
+  border: 1px solid hsla(330, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, calc(100% - 4px) 0%, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0% calc(100% - 4px), 0% 4px);
+}
+
+.badge-surface {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 75%);
+  border: 1px solid hsl(0, 0%, 25%);
+  clip-path: polygon(4px 0%, calc(100% - 4px) 0%, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0% calc(100% - 4px), 0% 4px);
 }
 
 /* =============================================================================
    RESPONSIVE DASHBOARD GRID LAYOUT SYSTEM
    ============================================================================= */
 
-/* Dashboard grid system with responsive, flexible sizing */
+/* Dashboard grid system with consistent 1/16 screen height for all panels */
 .dashboard-grid {
   display: grid;
   grid-template-areas: 
@@ -264,37 +425,34 @@ body {
     "left-panel  main-content right-panel"
     "bottom-left bottom-bar  bottom-right";
   
-  /* Responsive grid columns using clamp() for smooth scaling */
+  /* Grid columns - consistent 1/16 screen HEIGHT for all panels */
   grid-template-columns: 
-    clamp(180px, 15vw, 280px)   /* Left panel: 180-280px, 15% viewport */
+    6.25vh                       /* Left panel: 1/16 of viewport height */
     1fr                          /* Center: flexible */
-    clamp(180px, 15vw, 280px);   /* Right panel: 180-280px, 15% viewport */
+    6.25vh;                      /* Right panel: 1/16 of viewport height */
   
-  /* Responsive grid rows */
+  /* Grid rows - 1/16 screen height for border panels */
   grid-template-rows: 
-    clamp(50px, 6vh, 80px)       /* Top bar: 50-80px, 6% viewport height */
+    6.25vh                       /* Top bar: 1/16 of viewport height */
     1fr                          /* Center: flexible */
-    clamp(40px, 5vh, 70px);      /* Bottom bar: 40-70px, 5% viewport height */
+    6.25vh;                      /* Bottom bar: 1/16 of viewport height */
   
   height: 100vh;
   width: 100vw;
-  gap: clamp(1px, 0.2vw, 4px);   /* Responsive gap */
-  @apply bg-surface-bg;
-  padding: clamp(1px, 0.2vw, 4px);
+  gap: 0;                        /* No gap for seamless layout */
+  background-color: #000000;
+  padding: 0;
+  
+  /* CSS Custom Properties for dynamic sizing */
+  --panel-thickness: 6.25vh;
+  --icon-size: calc(6.25vh - 8px);
+  --icon-padding: 4px;
 }
 
-/* Panel chamfer styling with responsive sizing */
-.panel-chamfer {
-  @apply bg-surface-elevated border border-surface-border;
-  @apply chamfer-medium;
-  position: relative;
-  overflow: hidden;
-  min-width: 0; /* Prevent flex/grid overflow */
-  min-height: 0; /* Prevent flex/grid overflow */
-}
+/* Panel chamfer styling - removed, now handled in individual components */
 
 /* =============================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS - Updated for consistent 1/16 sizing
    ============================================================================= */
 
 /* Large screens (desktop) - default layout above */
@@ -302,10 +460,8 @@ body {
 /* Medium screens (tablet landscape) */
 @media (max-width: 1024px) {
   .dashboard-grid {
-    grid-template-columns: 
-      clamp(160px, 18vw, 240px)   /* Slightly wider panels on tablet */
-      1fr 
-      clamp(160px, 18vw, 240px);
+    --panel-thickness: 6.25vh;
+    --icon-size: calc(6.25vh - 8px);
   }
 }
 
@@ -318,14 +474,17 @@ body {
       "bottom-left bottom-bar bottom-right";
     
     grid-template-columns: 
-      clamp(120px, 20vw, 180px)   /* Smaller side panels */
+      6.25vh                     /* Keep consistent sizing for corners */
       1fr 
-      clamp(120px, 20vw, 180px);
+      6.25vh;
     
     grid-template-rows: 
-      clamp(45px, 7vh, 60px)      /* Smaller top bar */
+      6.25vh                     /* Keep consistent sizing */
       1fr 
-      clamp(35px, 6vh, 50px);     /* Smaller bottom bar */
+      6.25vh;
+    
+    --panel-thickness: 6.25vh;
+    --icon-size: calc(6.25vh - 10px);
   }
   
   /* Hide side panels on tablet portrait */
@@ -345,9 +504,12 @@ body {
     
     grid-template-columns: 1fr;
     grid-template-rows: 
-      clamp(40px, 8vh, 55px)      /* Mobile top bar */
+      6.25vh                     /* Keep consistent sizing */
       1fr 
-      clamp(30px, 7vh, 45px);     /* Mobile bottom bar */
+      6.25vh;
+    
+    --panel-thickness: 6.25vh;
+    --icon-size: calc(6.25vh - 12px);
   }
   
   /* Hide corner panels on mobile */
@@ -359,23 +521,14 @@ body {
   .grid-area-right-panel {
     display: none;
   }
-  
-  /* Smaller chamfers on mobile */
-  .chamfer-large { @apply chamfer-medium; }
-  .chamfer-medium { @apply chamfer-small; }
-  .chamfer-small { @apply chamfer-tiny; }
 }
 
 /* Very small screens (narrow mobile) */
 @media (max-width: 320px) {
   .dashboard-grid {
-    gap: 1px;
-    padding: 1px;
+    --panel-thickness: 6.25vh;
+    --icon-size: calc(6.25vh - 14px);
   }
-  
-  /* Even smaller chamfers */
-  .chamfer-medium { @apply chamfer-tiny; }
-  .chamfer-small { @apply chamfer-micro; }
 }
 
 /* =============================================================================
@@ -396,7 +549,7 @@ body {
 }
 
 .glow-hover:hover {
-  @apply shadow-glow;
+  box-shadow: 0 0 20px hsla(300, 100%, 50%, 0.4), 0 0 40px hsla(300, 100%, 50%, 0.2);
 }
 
 /* Smooth transitions for responsive changes */
@@ -420,16 +573,16 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-surface-elevated;
+  background-color: hsl(0, 0%, 16%);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-surface-border;
-  @apply chamfer-micro;
+  background-color: hsl(0, 0%, 25%);
+  clip-path: polygon(2px 0%, calc(100% - 2px) 0%, 100% 2px, 100% calc(100% - 2px), calc(100% - 2px) 100%, 2px 100%, 0% calc(100% - 2px), 0% 2px);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  @apply bg-brand-core-500;
+  background-color: hsl(300, 100%, 50%);
 }
 
 /* =============================================================================
@@ -460,8 +613,43 @@ body {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  @apply border border-edge-white/10;
-  @apply chamfer-medium;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+}
+
+/* =============================================================================
+   KEYFRAME ANIMATIONS
+   ============================================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(10px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Moving plaid background animation */
+@keyframes movingPlaid {
+  0% { 
+    background-position: 0px 0px, 0px 0px; 
+  }
+  100% { 
+    background-position: 40px 40px, 40px 40px; 
+  }
 }
 
 /* =============================================================================
@@ -476,11 +664,7 @@ body {
   background-size: 20px 20px;
 }
 
-/* Remove all border-radius from Flowbite components during transition */
-:global(.flowbite-override) {
-  border-radius: 0 !important;
-}
-
-:global([class*="rounded"]) {
+/* Remove all border-radius from any elements */
+* {
   border-radius: 0 !important;
 }

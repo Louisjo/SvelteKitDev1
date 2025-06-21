@@ -1,11 +1,15 @@
 <script>
-	// Main Content Panel - Center area, balanced content
-	import { currentTab, conversations, agents, workflows } from '$lib';
+	// Main Content Panel - Enhanced content with smooth tab transitions
+	import { currentTab, conversations, agents, workflows } from '$lib/stores';
+	import { fly, fade } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 </script>
 
-<div class="panel-content content-center">
+<div class="floating-content">
 	{#if $currentTab === 'chat'}
-		<div class="content-section">
+		<div class="content-section" 
+			 in:fly="{{ x: -50, duration: 400, easing: cubicOut }}"
+			 out:fade="{{ duration: 200 }}">
 			<h2 class="content-title">Chat Interface</h2>
 			<div class="content-area">
 				<div class="chat-placeholder">
@@ -18,11 +22,13 @@
 			</div>
 		</div>
 	{:else if $currentTab === 'workflow'}
-		<div class="content-section">
+		<div class="content-section"
+			 in:fly="{{ y: -50, duration: 400, easing: cubicOut }}"
+			 out:fade="{{ duration: 200 }}">
 			<h2 class="content-title">Workflow Builder</h2>
 			<div class="content-area">
 				<div class="workflow-placeholder">
-					<div class="placeholder-icon">🔄</div>
+					<div class="placeholder-icon">⚡</div>
 					<p class="placeholder-text">Workflow canvas will be implemented here</p>
 					<div class="placeholder-stats">
 						<span class="stat-item">{$workflows.length} workflows</span>
@@ -31,7 +37,9 @@
 			</div>
 		</div>
 	{:else if $currentTab === 'agents'}
-		<div class="content-section">
+		<div class="content-section"
+			 in:fly="{{ x: 50, duration: 400, easing: cubicOut }}"
+			 out:fade="{{ duration: 200 }}">
 			<h2 class="content-title">Agent Management</h2>
 			<div class="content-area">
 				<div class="agents-placeholder">
@@ -47,20 +55,25 @@
 </div>
 
 <style>
-	.panel-content {
+	.floating-content {
 		height: 100%;
-		padding: 24px;
+		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
 		position: relative;
 		overflow: hidden;
-	}
-	
-	/* Center content - balanced approach */
-	.content-center {
-		justify-content: center;
-		align-items: center;
-		text-align: center;
+		box-sizing: border-box;
+		/* Add a subtle moving background pattern */
+		background-image: 
+			linear-gradient(45deg, 
+				rgba(255, 255, 255, 0.01) 25%, 
+				transparent 25%),
+			linear-gradient(-45deg, 
+				rgba(255, 255, 255, 0.01) 25%, 
+				transparent 25%);
+		background-size: 40px 40px;
+		background-position: 0 0, 20px 20px;
+		animation: movingPlaid 30s linear infinite;
 	}
 	
 	.content-section {
@@ -68,10 +81,21 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out forwards;
 	}
 	
 	.content-title {
-		@apply text-text-primary font-semibold text-2xl mb-6;
+		color: hsl(0, 0%, 95%);
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		transform: translateY(10px);
+		animation: slideInTitle 0.5s ease-out 0.2s forwards;
 	}
 	
 	.content-area {
@@ -79,6 +103,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		width: 100%;
+		max-width: 400px;
+		transform: translateY(20px);
+		opacity: 0;
+		animation: slideInContent 0.6s ease-out 0.4s forwards;
 	}
 	
 	.chat-placeholder,
@@ -87,48 +116,178 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 16px;
-		padding: 32px;
-		@apply bg-surface-interactive border border-surface-border;
-		/* Chamfer cut for placeholder areas */
+		gap: 12px;
+		padding: 1.5rem;
+		background: linear-gradient(135deg, 
+			rgba(0, 0, 0, 0.3) 0%, 
+			rgba(0, 0, 0, 0.1) 100%);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		/* Enhanced chamfer cut for placeholder areas */
 		clip-path: polygon(
-			16px 0%, 
-			100% 0%, 
-			100% calc(100% - 16px), 
-			calc(100% - 16px) 100%, 
-			0% 100%, 
-			0% 16px
+			12px 0%, 
+			calc(100% - 12px) 0%, 
+			100% 12px, 
+			100% calc(100% - 12px), 
+			calc(100% - 12px) 100%, 
+			12px 100%, 
+			0% calc(100% - 12px), 
+			0% 12px
 		);
+		backdrop-filter: blur(8px);
+		width: 100%;
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.chat-placeholder:hover,
+	.workflow-placeholder:hover,
+	.agents-placeholder:hover {
+		border-color: rgba(300, 100%, 50%, 0.3);
+		box-shadow: 0 0 20px rgba(300, 100%, 50%, 0.1);
+		transform: translateY(-2px);
+	}
+	
+	/* Add subtle animated background to placeholders */
+	.chat-placeholder::before,
+	.workflow-placeholder::before,
+	.agents-placeholder::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(45deg, 
+			transparent 30%, 
+			rgba(255, 255, 255, 0.02) 50%, 
+			transparent 70%);
+		animation: shimmer 3s ease-in-out infinite;
+		pointer-events: none;
 	}
 	
 	.placeholder-icon {
-		font-size: 48px;
-		opacity: 0.6;
+		font-size: 2rem;
+		opacity: 0.7;
+		transition: all 0.3s ease;
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+	}
+	
+	.chat-placeholder:hover .placeholder-icon,
+	.workflow-placeholder:hover .placeholder-icon,
+	.agents-placeholder:hover .placeholder-icon {
+		transform: scale(1.1);
+		opacity: 0.9;
 	}
 	
 	.placeholder-text {
-		@apply text-text-secondary text-lg;
-		max-width: 300px;
+		color: hsl(0, 0%, 85%);
+		font-size: 0.875rem;
+		max-width: 250px;
+		line-height: 1.4;
+		transition: color 0.3s ease;
 	}
 	
 	.placeholder-stats {
 		display: flex;
-		gap: 16px;
+		gap: 8px;
 		margin-top: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 	
 	.stat-item {
-		@apply px-3 py-1 text-xs;
-		@apply bg-brand-core-500/20 text-brand-core-300;
-		@apply border border-brand-core-500/30;
-		/* Chamfer cut for stat items */
+		padding: 0.25rem 0.5rem;
+		font-size: 0.625rem;
+		background: linear-gradient(135deg, 
+			rgba(255, 255, 255, 0.2) 0%, 
+			rgba(255, 255, 255, 0.1) 100%);
+		color: hsl(0, 0%, 90%);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		/* Enhanced chamfer cut for stat items */
 		clip-path: polygon(
-			6px 0%, 
-			100% 0%, 
-			100% calc(100% - 6px), 
-			calc(100% - 6px) 100%, 
-			0% 100%, 
-			0% 6px
+			4px 0%, 
+			calc(100% - 4px) 0%, 
+			100% 4px, 
+			100% calc(100% - 4px), 
+			calc(100% - 4px) 100%, 
+			4px 100%, 
+			0% calc(100% - 4px), 
+			0% 4px
 		);
+		font-weight: 500;
+		transition: all 0.3s ease;
+	}
+	
+	.stat-item:hover {
+		background: linear-gradient(135deg, 
+			rgba(300, 100%, 50%, 0.2) 0%, 
+			rgba(270, 100%, 50%, 0.1) 100%);
+		border-color: rgba(300, 100%, 50%, 0.3);
+		transform: scale(1.05);
+	}
+	
+	/* Enhanced animations */
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	@keyframes slideInTitle {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	@keyframes slideInContent {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	@keyframes shimmer {
+		0%, 100% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		50% {
+			transform: translateX(100%);
+			opacity: 1;
+		}
+	}
+	
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.floating-content {
+			padding: 1rem;
+		}
+		
+		.content-title {
+			font-size: 1.125rem;
+		}
+		
+		.placeholder-icon {
+			font-size: 1.5rem;
+		}
+		
+		.placeholder-text {
+			font-size: 0.75rem;
+		}
 	}
 </style>
