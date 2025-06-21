@@ -1,252 +1,127 @@
-/* Multi-Agent UI - Custom Branding CSS with Chamfer Cuts & Center-Pull Design */
+/* Multi-Agent UI - Custom Branding CSS with Chamfer Cuts */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* =============================================================================
-   CUSTOM BRANDING SYSTEM - NO ROUNDED CORNERS
-   Designed for eventual Flowbite replacement with chamfer cuts
-   ============================================================================= */
-
-/* Global styles with new surface colors */
+/* Global styles */
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  @apply bg-surface-bg text-text-primary;
-  overflow: hidden; /* Prevent scrollbars on dashboard layout */
+  background-color: hsl(0, 0%, 12.5%);
+  color: hsl(0, 0%, 95%);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* Dark mode overrides */
+/* Dark mode override */
 .dark {
-  @apply bg-surface-bg text-text-primary;
+  background-color: hsl(0, 0%, 12.5%);
+  color: hsl(0, 0%, 95%);
+}
+
+/* Remove all rounded corners globally */
+* {
+  border-radius: 0 !important;
 }
 
 /* =============================================================================
-   CENTER-PULL CONTENT JUSTIFICATION SYSTEM
+   CHAMFER CUT SYSTEM
    ============================================================================= */
 
-@layer base {
-  /* Center-pull directional classes */
-  .content-pull-bottom { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-  }
-  
-  .content-pull-top { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-  }
-  
-  .content-pull-left { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-right { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-pull-top-left { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-top-right { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-pull-bottom-left { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: flex-start; 
-    text-align: left; 
-  }
-  
-  .content-pull-bottom-right { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: flex-end; 
-    text-align: right; 
-  }
-  
-  .content-center { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-  }
+.chamfer-large {
+  clip-path: polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px);
+}
+
+.chamfer-medium {
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+}
+
+.chamfer-small {
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+}
+
+.chamfer-tiny {
+  clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+}
+
+.chamfer-micro {
+  clip-path: polygon(2px 0%, 100% 0%, 100% calc(100% - 2px), calc(100% - 2px) 100%, 0% 100%, 0% 2px);
 }
 
 /* =============================================================================
-   CHAMFER CUT SYSTEM - NO ROUNDED CORNERS
+   CENTER-PULL CONTENT SYSTEM
    ============================================================================= */
 
-@layer base {
-  /* Chamfer size classes */
-  .chamfer-large {
-    clip-path: polygon(
-      16px 0%, 
-      100% 0%, 
-      100% calc(100% - 16px), 
-      calc(100% - 16px) 100%, 
-      0% 100%, 
-      0% 16px
-    );
-  }
-  
-  .chamfer-medium {
-    clip-path: polygon(
-      12px 0%, 
-      100% 0%, 
-      100% calc(100% - 12px), 
-      calc(100% - 12px) 100%, 
-      0% 100%, 
-      0% 12px
-    );
-  }
-  
-  .chamfer-small {
-    clip-path: polygon(
-      8px 0%, 
-      100% 0%, 
-      100% calc(100% - 8px), 
-      calc(100% - 8px) 100%, 
-      0% 100%, 
-      0% 8px
-    );
-  }
-  
-  .chamfer-tiny {
-    clip-path: polygon(
-      4px 0%, 
-      100% 0%, 
-      100% calc(100% - 4px), 
-      calc(100% - 4px) 100%, 
-      0% 100%, 
-      0% 4px
-    );
-  }
-  
-  .chamfer-micro {
-    clip-path: polygon(
-      2px 0%, 
-      100% 0%, 
-      100% calc(100% - 2px), 
-      calc(100% - 2px) 100%, 
-      0% 100%, 
-      0% 2px
-    );
-  }
+.content-pull-bottom { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+}
+
+.content-pull-top { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+}
+
+.content-pull-left { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-right { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-pull-top-left { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-top-right { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-pull-bottom-left { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  align-items: flex-start; 
+  text-align: left; 
+}
+
+.content-pull-bottom-right { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  align-items: flex-end; 
+  text-align: right; 
+}
+
+.content-center { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
 }
 
 /* =============================================================================
-   COMPONENT LAYER - Chamfered Flowbite Replacement System
+   DASHBOARD GRID
    ============================================================================= */
 
-@layer components {
-  /* Custom button system with chamfer cuts */
-  .btn-brand {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-core-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small; /* No rounded corners */
-  }
-  
-  .btn-brand-cool {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient-cool text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-cool-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small;
-  }
-  
-  .btn-brand-warm {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-brand-gradient-warm text-edge-white;
-    @apply hover:shadow-brand focus:ring-2 focus:ring-brand-warm-500/50;
-    @apply active:scale-95;
-    @apply chamfer-small;
-  }
-  
-  .btn-surface {
-    @apply px-4 py-2 font-medium transition-all duration-200;
-    @apply bg-surface-interactive text-text-primary border border-surface-border;
-    @apply hover:bg-surface-elevated hover:shadow-surface;
-    @apply focus:ring-2 focus:ring-brand-core-500/30;
-    @apply chamfer-small;
-  }
-
-  /* Card system with chamfer cuts */
-  .card-surface {
-    @apply bg-surface-elevated border border-surface-border;
-    @apply shadow-surface backdrop-blur-sm;
-    @apply chamfer-medium;
-  }
-  
-  .card-surface-elevated {
-    @apply bg-surface-elevated border border-surface-border;
-    @apply shadow-surface-lg backdrop-blur-sm;
-    @apply hover:shadow-brand-hover transition-shadow duration-300;
-    @apply chamfer-medium;
-  }
-  
-  .card-brand {
-    @apply bg-surface-elevated border border-brand-core-500/30;
-    @apply shadow-brand backdrop-blur-sm;
-    @apply chamfer-medium;
-    background: linear-gradient(135deg, 
-      hsla(0, 0%, 16%, 0.8) 0%, 
-      hsla(300, 100%, 50%, 0.1) 100%);
-  }
-
-  /* Badge system with chamfer cuts */
-  .badge-brand {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-core-500/20 text-brand-core-300 border border-brand-core-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-cool {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-cool-500/20 text-brand-cool-300 border border-brand-cool-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-warm {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-brand-warm-500/20 text-brand-warm-300 border border-brand-warm-500/30;
-    @apply chamfer-tiny;
-  }
-  
-  .badge-surface {
-    @apply px-2 py-1 text-xs font-medium;
-    @apply bg-surface-interactive text-text-secondary border border-surface-border;
-    @apply chamfer-tiny;
-  }
-}
-
-/* =============================================================================
-   DASHBOARD GRID LAYOUT SYSTEM
-   ============================================================================= */
-
-/* Dashboard grid system with chamfered panels */
 .dashboard-grid {
   display: grid;
   grid-template-areas: 
@@ -258,23 +133,22 @@ body {
   height: 100vh;
   width: 100vw;
   gap: 2px;
-  @apply bg-surface-bg;
+  background-color: hsl(0, 0%, 12.5%);
   padding: 2px;
 }
 
-/* Panel chamfer styling */
 .panel-chamfer {
-  @apply bg-surface-elevated border border-surface-border;
-  @apply chamfer-medium;
+  background-color: hsl(0, 0%, 16%);
+  border: 1px solid hsl(0, 0%, 25%);
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
   position: relative;
   overflow: hidden;
 }
 
 /* =============================================================================
-   LAYOUT SYSTEM & ANIMATIONS
+   ANIMATIONS
    ============================================================================= */
 
-/* Custom animations for smooth interactions */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -283,15 +157,6 @@ body {
   animation: slideUp 0.3s ease-out;
 }
 
-.glow-hover {
-  transition: box-shadow 0.3s ease;
-}
-
-.glow-hover:hover {
-  @apply shadow-glow;
-}
-
-/* Smooth transitions for tab switching */
 .tab-transition {
   transition: all 0.3s ease-in-out;
 }
@@ -300,29 +165,157 @@ body {
   transform: translateY(-1px);
 }
 
-/* Custom scrollbar with brand theming and chamfer cuts */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-surface-elevated;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-surface-border;
-  @apply chamfer-micro;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  @apply bg-brand-core-500;
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* =============================================================================
-   SPECIAL EFFECTS & POLISH
+   CUSTOM COMPONENTS
    ============================================================================= */
 
-/* Gradient text effect */
+/* Button system with chamfer cuts */
+.btn-brand {
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, hsl(300, 100%, 50%) 0%, hsl(270, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  cursor: pointer;
+}
+
+.btn-brand:hover {
+  box-shadow: 0 4px 14px 0 hsla(300, 100%, 50%, 0.25);
+  transform: scale(0.95);
+}
+
+.btn-brand-cool {
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, hsl(270, 100%, 50%) 0%, hsl(300, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  cursor: pointer;
+}
+
+.btn-brand-cool:hover {
+  box-shadow: 0 4px 14px 0 hsla(270, 100%, 50%, 0.25);
+  transform: scale(0.95);
+}
+
+.btn-brand-warm {
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, hsl(300, 100%, 50%) 0%, hsl(330, 100%, 50%) 100%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  cursor: pointer;
+}
+
+.btn-brand-warm:hover {
+  box-shadow: 0 4px 14px 0 hsla(330, 100%, 50%, 0.25);
+  transform: scale(0.95);
+}
+
+.btn-surface {
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 95%);
+  border: 1px solid hsl(0, 0%, 25%);
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  cursor: pointer;
+}
+
+.btn-surface:hover {
+  background-color: hsl(0, 0%, 16%);
+  box-shadow: 0 4px 14px 0 hsla(0, 0%, 0%, 0.3);
+}
+
+/* Card system with chamfer cuts */
+.card-surface {
+  background-color: hsl(0, 0%, 16%);
+  border: 1px solid hsl(0, 0%, 25%);
+  box-shadow: 0 4px 14px 0 hsla(0, 0%, 0%, 0.3);
+  backdrop-filter: blur(10px);
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+}
+
+.card-surface-elevated {
+  background-color: hsl(0, 0%, 16%);
+  border: 1px solid hsl(0, 0%, 25%);
+  box-shadow: 0 10px 25px -3px hsla(0, 0%, 0%, 0.4), 0 4px 6px -2px hsla(0, 0%, 0%, 0.2);
+  backdrop-filter: blur(10px);
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-surface-elevated:hover {
+  box-shadow: 0 10px 25px -3px hsla(300, 100%, 50%, 0.2);
+}
+
+.card-brand {
+  background: linear-gradient(135deg, hsla(0, 0%, 16%, 0.8) 0%, hsla(300, 100%, 50%, 0.1) 100%);
+  border: 1px solid hsla(300, 100%, 50%, 0.3);
+  box-shadow: 0 4px 14px 0 hsla(300, 100%, 50%, 0.25);
+  backdrop-filter: blur(10px);
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+}
+
+/* Badge system with chamfer cuts */
+.badge-brand {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: hsla(300, 100%, 50%, 0.2);
+  color: hsl(300, 100%, 70%);
+  border: 1px solid hsla(300, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+}
+
+.badge-cool {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: hsla(270, 100%, 50%, 0.2);
+  color: hsl(270, 100%, 70%);
+  border: 1px solid hsla(270, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+}
+
+.badge-warm {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: hsla(330, 100%, 50%, 0.2);
+  color: hsl(330, 100%, 70%);
+  border: 1px solid hsla(330, 100%, 50%, 0.3);
+  clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+}
+
+.badge-surface {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 75%);
+  border: 1px solid hsl(0, 0%, 25%);
+  clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+}
+
+/* Text effects */
 .text-brand-gradient {
   background: linear-gradient(135deg, hsl(300, 100%, 60%) 0%, hsl(270, 100%, 60%) 100%);
   -webkit-background-clip: text;
@@ -330,28 +323,8 @@ body {
   background-clip: text;
 }
 
-/* Animated gradient backgrounds */
-.bg-animated-gradient {
-  background: linear-gradient(-45deg, 
-    hsl(300, 100%, 50%), 
-    hsl(270, 100%, 50%), 
-    hsl(330, 100%, 50%), 
-    hsl(300, 100%, 50%));
-  background-size: 400% 400%;
-  animation: gradientShift 4s ease-in-out infinite;
-}
-
-/* Glassmorphism effect with chamfer cuts */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  @apply border border-edge-white/10;
-  @apply chamfer-medium;
-}
-
 /* =============================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ============================================================================= */
 
 @media (max-width: 768px) {
@@ -363,36 +336,4 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 60px;
   }
-  
-  /* Smaller chamfers on mobile */
-  .chamfer-large { @apply chamfer-medium; }
-  .chamfer-medium { @apply chamfer-small; }
-  .chamfer-small { @apply chamfer-tiny; }
-}
-
-@media (max-width: 480px) {
-  /* Even smaller chamfers on very small screens */
-  .chamfer-medium { @apply chamfer-tiny; }
-  .chamfer-small { @apply chamfer-micro; }
-}
-
-/* =============================================================================
-   DEVELOPMENT HELPERS
-   ============================================================================= */
-
-/* Visual debugging for layout development */
-.debug-grid {
-  background-image: 
-    linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* Remove all border-radius from Flowbite components during transition */
-:global(.flowbite-override) {
-  border-radius: 0 !important;
-}
-
-:global([class*="rounded"]) {
-  border-radius: 0 !important;
 }

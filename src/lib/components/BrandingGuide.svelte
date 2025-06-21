@@ -30,37 +30,37 @@
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Brand Core (300° Magenta)</h3>
 							<div class="flex space-x-2">
-								<div class="w-8 h-8 bg-brand-core-300 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-core-500 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-core-700 rounded border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-core-300 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-core-500 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-core-700 chamfer-tiny border border-surface-border"></div>
 							</div>
 						</div>
 						
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Brand Cool (270° Blue-Purple)</h3>
 							<div class="flex space-x-2">
-								<div class="w-8 h-8 bg-brand-cool-300 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-cool-500 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-cool-700 rounded border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-cool-300 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-cool-500 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-cool-700 chamfer-tiny border border-surface-border"></div>
 							</div>
 						</div>
 						
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Brand Warm (330° Red-Purple)</h3>
 							<div class="flex space-x-2">
-								<div class="w-8 h-8 bg-brand-warm-300 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-warm-500 rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-brand-warm-700 rounded border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-warm-300 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-warm-500 chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-brand-warm-700 chamfer-tiny border border-surface-border"></div>
 							</div>
 						</div>
 						
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Surface Colors (12.5% Grey Base)</h3>
 							<div class="flex space-x-2">
-								<div class="w-8 h-8 bg-surface-bg rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-surface-elevated rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-surface-interactive rounded border border-surface-border"></div>
-								<div class="w-8 h-8 bg-surface-border rounded border border-surface-border"></div>
+								<div class="w-8 h-8 bg-surface-bg chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-surface-elevated chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-surface-interactive chamfer-tiny border border-surface-border"></div>
+								<div class="w-8 h-8 bg-surface-border chamfer-tiny border border-surface-border"></div>
 							</div>
 						</div>
 					</div>
@@ -113,10 +113,10 @@
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Background Gradients</h3>
 							<div class="space-y-2">
-								<div class="h-8 bg-brand-gradient rounded"></div>
-								<div class="h-8 bg-brand-gradient-cool rounded"></div>
-								<div class="h-8 bg-brand-gradient-warm rounded"></div>
-								<div class="h-8 bg-surface-gradient rounded"></div>
+								<div class="h-8 bg-brand-gradient chamfer-small"></div>
+								<div class="h-8 bg-brand-gradient-cool chamfer-small"></div>
+								<div class="h-8 bg-brand-gradient-warm chamfer-small"></div>
+								<div class="h-8 bg-surface-gradient chamfer-small"></div>
 							</div>
 						</div>
 						
@@ -162,7 +162,7 @@
 						</div>
 					</div>
 					
-					<div class="mt-4 p-3 bg-surface-interactive rounded">
+					<div class="mt-4 p-3 bg-surface-interactive chamfer-small">
 						<h4 class="font-medium text-text-primary mb-1">Current Strategy</h4>
 						<p class="text-xs text-text-muted">
 							Using CSS @layer components for custom classes alongside Flowbite.
@@ -178,11 +178,11 @@
 					<div class="grid md:grid-cols-2 gap-6">
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">Before (Flowbite)</h3>
-							<pre class="bg-surface-interactive p-3 rounded text-xs text-text-secondary overflow-x-auto"><code>&lt;Button color="blue" size="sm"&gt;
+							<pre class="bg-surface-interactive p-3 chamfer-small text-xs text-text-secondary overflow-x-auto"><code>&lt;Button color="blue" size="sm"&gt;
   Click Me
 &lt;/Button&gt;
 
-&lt;Card class="bg-gray-800"&gt;
+&lt;Card class="bg-surface-elevated"&gt;
   &lt;Badge color="green"&gt;Status&lt;/Badge&gt;
 &lt;/Card&gt;</code></pre>
 						</div>
@@ -199,7 +199,7 @@
 						</div>
 					</div>
 					
-					<div class="mt-4 p-3 bg-brand-core-500/10 border border-brand-core-500/20 rounded">
+					<div class="mt-4 p-3 bg-brand-core-500/10 border border-brand-core-500/20 chamfer-small">
 						<h4 class="font-medium text-brand-core-300 mb-1">💡 Pro Tip</h4>
 						<p class="text-xs text-text-secondary">
 							All custom classes are designed to be drop-in replacements. You can gradually migrate 
