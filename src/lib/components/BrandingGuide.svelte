@@ -189,7 +189,7 @@
 						
 						<div>
 							<h3 class="font-medium text-text-primary mb-2">After (Custom System)</h3>
-							<pre class="bg-surface-interactive p-3 rounded text-xs text-text-secondary overflow-x-auto"><code>&lt;button class="btn-brand"&gt;
+							<pre class="bg-surface-interactive p-3 chamfer-small text-xs text-text-secondary overflow-x-auto"><code>&lt;button class="btn-brand"&gt;
   Click Me
 &lt;/button&gt;
 
