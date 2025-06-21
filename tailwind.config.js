@@ -115,7 +115,7 @@ export default {
         'brand': '0 4px 14px 0 hsla(300, 100%, 50%, 0.25)',
         'brand-lg': '0 10px 25px -3px hsla(300, 100%, 50%, 0.3), 0 4px 6px -2px hsla(300, 100%, 50%, 0.1)',
         'brand-subtle': '0 4px 14px 0 hsla(300, 100%, 50%, 0.15)',
-        'brand-hover': '0 10px 25px -3px hsla(0, 0%, 0%, 0.4), 0 4px 6px -2px hsla(0, 0%, 0%, 0.2), 0 0 20px hsla(300, 100%, 50%, 0.2)',
+        'brand-hover': '0 10px 25px -3px hsla(300, 100%, 50%, 0.2), 0 4px 6px -2px hsla(300, 100%, 50%, 0.1)',
         'glow': '0 0 20px hsla(300, 100%, 50%, 0.4), 0 0 40px hsla(300, 100%, 50%, 0.2)',
         'surface': '0 4px 14px 0 hsla(0, 0%, 0%, 0.3)',
         'surface-lg': '0 10px 25px -3px hsla(0, 0%, 0%, 0.4), 0 4px 6px -2px hsla(0, 0%, 0%, 0.2)',
