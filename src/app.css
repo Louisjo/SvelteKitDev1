@@ -203,7 +203,7 @@ body {
   .card-surface-elevated {
     @apply bg-surface-elevated border border-surface-border;
     @apply shadow-surface-lg backdrop-blur-sm;
-    @apply hover:shadow-brand/20 transition-shadow duration-300;
+    @apply hover:shadow-brand-hover transition-shadow duration-300;
     @apply chamfer-medium;
   }
   
